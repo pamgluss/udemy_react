@@ -1,0 +1,8 @@
+.userInput {
+  border-bottom: 1px solid black;
+  box-shadow: 0 2px 3px #ccc;
+  padding: 25px;
+}
+.inputBox {
+  width: 50%;
+}
