@@ -3,6 +3,9 @@ import './App.css';
 import Person from './Person/Person';
 import UserInput from './UserInput/UserInput';
 import UserOutput from './UserOutput/UserOutput';
+import ValidationComponent from './ValidationComponent/ValidationComponent';
+import CharBox from './CharBox/CharBox';
+import Radium, {StyleRoot} from 'radium';
 
 class App extends Component {
   state = {
@@ -16,7 +19,9 @@ class App extends Component {
       'pgluss11',
       'klewis15'
     ],
-    showNames: false
+    showNames: false,
+    textLength: 0,
+    textValue: ''
   }
 
   toggleNamesHandler = () => {
@@ -62,14 +67,42 @@ class App extends Component {
     });
   }
 
+  calculateLengthHandler = (event) => {
+    this.setState({
+      textLength: event.target.value.length,
+      textValue: event.target.value
+    })
+  }
+
+  deleteCharHandler = (index) => {
+    const stateChars = [...this.state.textValue];
+    stateChars.splice(index, 1);
+    this.setState({
+      textValue: stateChars
+    })
+  }
+
   render() {
     const style = {
-      backgroundColor: 'white',
+      backgroundColor: '#1abc1a',
+      color: 'white',
       font: 'inhert',
-      border: '1px solid blue',
+      border: '1px solid #0a5b0a',
       padding: '8px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      ':hover': {
+        backgroundColor: 'green',
+        color: 'black'
+      }
     };
+
+    let classes = [];
+    if( this.state.persons.length < 3 ){
+      classes.push('red');
+    }
+    if( this.state.persons.length < 2 ){
+      classes.push('bold');
+    }
 
     let persons = null;
     if ( this.state.showNames ){
@@ -86,32 +119,69 @@ class App extends Component {
           })}
         </div>
       )
+      style.backgroundColor='red'
+      style.border = '1px solid black'
+      style[':hover'] = {
+        backgroundColor: 'salmon',
+        color: 'black'
+      };
     }
 
     let UserOutputs = (
-      this.state.usernames.map((usernames) => {
-        return( <UserOutput username={usernames} />)
+      this.state.usernames.map((usernames, index) => {
+        return( <UserOutput 
+          username={usernames}
+          key={index} />)
       })
     )
-    return (
-      <div className='App'>
-        <div className='assignment1'>
-          {UserOutputs}
-          <UserInput change={this.usernameChangeHandler}/>
-        </div>
-        <div className='basics'>
-          <h1>Pam's Great React App</h1>
-          <p onClick={() => this.switchNameHandler('Edward')}>Hello world!</p>
-          <button 
-            style={style}
-            onClick={this.toggleNamesHandler}
-          >Toggle People</button>
-          {persons}
-        </div>
 
-      </div>
+    let charBoxes = null;
+    if ( this.state.textValue.length > 0){
+      let char_array = [...this.state.textValue];
+      charBoxes = (
+        <div>
+          {char_array.map((letter, index) => {
+            return(
+              <CharBox 
+              letter={letter}
+              click={() => this.deleteCharHandler(index)}
+              key={index} />
+            )
+          })}
+        </div>
+      )
+    }
+
+    return (
+      <StyleRoot>
+        <div className='App'>
+          <div className='assignment2'>
+            <h1>Assignment 2:</h1>
+            <textarea 
+              onChange={this.calculateLengthHandler}
+              value={[...this.state.textValue].join('')}
+            ></textarea>
+            <ValidationComponent textLength={this.state.textLength} />
+            {charBoxes}
+            <hr />
+          </div>
+          <div className='assignment1'>
+            {UserOutputs}
+            <UserInput change={this.usernameChangeHandler}/>
+          </div>
+          <div className='basics'>
+            <h1>Pam's Great React App</h1>
+            <p className={classes.join(' ')}>Hello world!</p>
+            <button 
+              style={style}
+              onClick={this.toggleNamesHandler}
+            >Toggle People</button>
+            {persons}
+          </div>
+        </div>
+      </StyleRoot>
     );
   }
 }
 
-export default App;
+export default Radium(App);
