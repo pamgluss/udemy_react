@@ -1,11 +1,7 @@
 import React from 'react';
+import Aux from '../hoc/aux';
 
 const ValidationComponent = (props) => {
-  const style = {
-    '@media (mid-width: 500px)': {
-      width: '450px'
-    }
-  }
   let validationText = ( <p>Text is short.</p>);
   if(props.textLength > 8){
     validationText = (
@@ -17,10 +13,14 @@ const ValidationComponent = (props) => {
     );
   }
   return(
-    <div style={style}>
+    <Aux>
+      <textarea 
+        onChange={props.calculateLengthHandler}
+        value={[...props.textValue].join('')}
+      />
       {validationText}
-    </div>
+    </Aux>
   )
 }
 
-export default ValidationComponent;
+export default React.memo(ValidationComponent);

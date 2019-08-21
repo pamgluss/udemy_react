@@ -5,7 +5,6 @@ import UserInput from './UserInput/UserInput';
 import UserOutput from './UserOutput/UserOutput';
 import ValidationComponent from './ValidationComponent/ValidationComponent';
 import CharBox from './CharBox/CharBox';
-import Radium, {StyleRoot} from 'radium';
 
 class App extends Component {
   state = {
@@ -153,7 +152,6 @@ class App extends Component {
     }
 
     return (
-      <StyleRoot>
         <div className='App'>
           <div className='assignment2'>
             <h1>Assignment 2:</h1>
@@ -179,9 +177,8 @@ class App extends Component {
             {persons}
           </div>
         </div>
-      </StyleRoot>
     );
   }
 }
 
-export default Radium(App);
+export default App;
