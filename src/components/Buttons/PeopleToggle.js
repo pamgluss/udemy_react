@@ -1,17 +1,20 @@
 import React from 'react';
 import styledClasses from '../../App.css';
+import withClassier from '../hoc/withClassier';
+
+let btnClass = '';
 
 const PeopleToggleButton = (props) => {
-  let btnClass = '';
+  
   if( props.showName ){
     btnClass = styledClasses.red;
   }
   return(
-    <button className={btnClass}
-      onClick={props.clicked}
-    >Toggle People</button>
+    <button onClick={props.clicked}>
+      Toggle People
+    </button>
   )
 
 }
 
-export default PeopleToggleButton;
+export default withClassier(PeopleToggleButton, btnClass);

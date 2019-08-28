@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from './Person/Person';
-import UserInput from './UserInput/UserInput';
-import UserOutput from './UserOutput/UserOutput';
-import ValidationComponent from './ValidationComponent/ValidationComponent';
-import CharBox from './CharBox/CharBox';
+import Person from './components/Persons/Persons';
+import UserInput from './components/IO/UserInput/UserInput';
+import UserOutput from './components/IO/UserOutput/UserOutput';
+import ValidationComponent from './components/ValidationComponent/ValidationComponent';
+import CharBox from './components/CharBox/CharBox';
+import WithClass from './components/hoc/WithClass';
+import withClassier from './components/hoc/withClassier';
 
 class App extends Component {
   state = {
@@ -152,8 +154,8 @@ class App extends Component {
     }
 
     return (
-        <div className='App'>
-          <div className='assignment2'>
+        <div>
+          <WithClass classes='assignment2'>
             <h1>Assignment 2:</h1>
             <textarea 
               onChange={this.calculateLengthHandler}
@@ -162,7 +164,7 @@ class App extends Component {
             <ValidationComponent textLength={this.state.textLength} />
             {charBoxes}
             <hr />
-          </div>
+          </WithClass>
           <div className='assignment1'>
             {UserOutputs}
             <UserInput change={this.usernameChangeHandler}/>
@@ -181,4 +183,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withClassier(App, 'App');

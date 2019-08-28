@@ -1,9 +1,9 @@
 import React from 'react';
-import cssClasses from './CharBox.css'
+import './CharBox.css'
 
 const CharBox = (props) => {
   return(
-    <div className={cssClasses.CharBox} onClick={props.click}>
+    <div className='CharBox' onClick={props.click}>
       {props.letter}
     </div>
   )

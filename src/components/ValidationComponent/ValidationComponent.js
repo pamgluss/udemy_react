@@ -14,10 +14,6 @@ const ValidationComponent = (props) => {
   }
   return(
     <Aux>
-      <textarea 
-        onChange={props.calculateLengthHandler}
-        value={[...props.textValue].join('')}
-      />
       {validationText}
     </Aux>
   )
