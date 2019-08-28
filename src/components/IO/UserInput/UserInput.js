@@ -1,13 +1,29 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import cssClasses from './UserInput.css';
 
-const userInput = (props) => {
+const UserInput = props => {
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    console.log('[Cockpit.js] useEffect');
+    inputRef.current.style.width = '25%';
+    return () => {
+      console.log('[Cockpit.js] cleanup work in useEffect');
+    };
+  }, []);
+
   return(
     <div className={cssClasses.userInput}>
       <p>Change usernames, separate with a space</p>
-      <input className={cssClasses.inputBox} type='text' onChange={props.change} value={props.username}/>
+      <input 
+        className={cssClasses.inputBox}
+        ref={inputRef}
+        type='text' 
+        onChange={props.change} 
+        value={props.username}
+      />
     </div>
   )
 }
 
-export default userInput;
+export default React.memo(UserInput);
