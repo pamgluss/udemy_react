@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from './components/Persons/Persons';
+import Persons from './components/Persons/Persons';
 import UserInput from './components/IO/UserInput/UserInput';
 import UserOutput from './components/IO/UserOutput/UserOutput';
 import ValidationComponent from './components/ValidationComponent/ValidationComponent';
@@ -107,19 +107,12 @@ class App extends Component {
 
     let persons = null;
     if ( this.state.showNames ){
-      persons = (
-        <div>
-          {this.state.persons.map((person, index) => {
-            return(
-              <Person
-                click={() => this.deletePersonHandler(index)}
-                name={person.name}
-                age={person.age}
-                key={person.id}
-                changed={(event) => this.nameChangeHandler( event, person.id )} />)
-          })}
-        </div>
-      )
+      persons = <Persons
+        persons={this.state.persons}
+        clicked={this.deletePersonHandler}
+        changed={this.nameChangeHandler}
+      />
+        
       style.backgroundColor='red'
       style.border = '1px solid black'
       style[':hover'] = {

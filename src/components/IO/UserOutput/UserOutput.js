@@ -1,11 +1,11 @@
 import React from 'react';
-import cssClasses from './UserOutput.css';
+import './UserOutput.css';
 
 const userOutput = (props) => {
   return(
-    <div className={cssClasses.userOutput}>
+    <div className='userOutput'>
       <p>Username:</p>
-      <p className={cssClasses.username}>{props.username}</p>
+      <p className='username'>{props.username}</p>
     </div>
   )
 }
