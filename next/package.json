@@ -1,0 +1,18 @@
+{
+  "name": "learn-next",
+  "version": "1.0.0",
+  "description": "pam learns next",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "author": "pgluss",
+  "license": "ISC",
+  "dependencies": {
+    "next": "^10.0.9",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}

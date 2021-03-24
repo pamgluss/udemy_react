@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actionTypes from '../store/actions'
+import { add, remove } from '../store/actions/actions'
 
 
 import Person from '../components/Person/Person';
@@ -32,8 +32,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAddPerson: () => dispatch({ type: actionTypes.ADD }),
-        onRemovePerson: (id) => dispatch({ type: actionTypes.REMOVE, personId: id })
+        onAddPerson: (name, age) => dispatch(add(name, age)),
+        onRemovePerson: (id) => dispatch(remove(id))
     }
 }
 
