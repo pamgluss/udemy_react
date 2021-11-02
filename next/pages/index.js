@@ -7,14 +7,13 @@ import Image from 'next/image';
 import Layout from '../components/Layout'
 
 class App extends Component {
-    static async getInitialProps(context){
+    static async getInitialProps(context) {
         console.log(context)
-
-        return { appName: 'This is coming from getInitialProps'}
+        return { appName: 'This is coming from getInitialProps' }
     }
 
     render() {
-        return(
+        return (
             <Layout>
                 <Head>
                     <title>Pam Next.js Learning</title>
@@ -22,6 +21,7 @@ class App extends Component {
                 <h1>Next.js Learning</h1>
                 <p>Go to <Link href="/auth"><a>Auth</a></Link></p>
                 <p>Go to <Link href="/auth/login"><a>Login</a></Link></p>
+                <p>Go to <Link href="/page_counter"><a>Page Counter</a></Link></p>
 
                 <Image
                     src="/images/arches-np.png" // Route of the image file
@@ -33,6 +33,5 @@ class App extends Component {
         )
     }
 }
-  
+
 export default App;
-  
